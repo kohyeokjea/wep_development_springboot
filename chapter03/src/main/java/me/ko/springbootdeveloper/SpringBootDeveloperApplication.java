@@ -113,6 +113,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
     HTTP 요청 ----> TestController <----> TestService <----> MemberRepository <----> Database
     url:/test----> 프레젠테이션 계층          비지니스 계층          퍼시스턴스 계층             데이터베이스
+
+    chapter04 프로젝트 생성
+
  */
 
 @SpringBootApplication
