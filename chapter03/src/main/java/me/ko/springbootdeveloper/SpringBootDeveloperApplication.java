@@ -99,6 +99,20 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
     작동을 확인해보겠습니다.
 
+        01 단계 - resources 폴더에 sql문 하나 추가
+            resources 우클릭 -> new -> file -> data.sql
+        02 단계 - 이제는 깁존에 만들어둔 application.yml 파일을 수정할겁니다.
+
+        03 단계 - 서버 실행 후에 ctrl + f 눌러서 create 검색해서 table 이 생성되었는지 확인
+
+        04 단계 - Postman에서 HTTP 요청을 시도해본다.
+            1) 포스트맨 실행
+            2) HTTP 메서드를 GET으로 설정하고 URL에 http://localhost:8080/test로 설정(TestController.java 확인)
+            3) SEND 버튼 누른다.
+            4) 200 OK 인지 확인
+
+    HTTP 요청 ----> TestController <----> TestService <----> MemberRepository <----> Database
+    url:/test----> 프레젠테이션 계층          비지니스 계층          퍼시스턴스 계층             데이터베이스
  */
 
 @SpringBootApplication
@@ -107,4 +121,3 @@ public class SpringBootDeveloperApplication {
         SpringApplication.run(SpringBootDeveloperApplication.class, args);
     }
 }
-
