@@ -24,7 +24,8 @@ public class SpringBootDeveloperApplication {
 
     20241223 MON.
         1. IntelliJ Community Version 설치 -> bin.PATH
-        2. GitHub 연동 -> web_development_springboot
-        3. IntelliJ에 Gradle 및 SpringBoot 프로젝트 생성
-        4. POSTMAN을 설치
+        2. Git 설치
+        3. GitHub 연동 -> web_development_springboot
+        4. IntelliJ에 Gradle 및 SpringBoot 프로젝트 생성
+        5. POSTMAN을 설치
  */
