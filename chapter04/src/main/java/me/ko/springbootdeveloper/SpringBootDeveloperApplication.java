@@ -38,7 +38,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
                 assertThat(savedMenu.getName()).isEqualTo(name));
                 assertThat(savedMenu.getName()).isEqualTo(price));
              }
-    이상의 코드를 확인하면 세 부분으로 나뉘어져 있음. 메뉴를 저장하기 위해 준비하는 과정인 given절 실제로 메뉴를 저장하는 when 절 메뉴가 잘 추가되었는지 확인하는 then 절
+    이상의 코드를 확인하면 세 부분으로 나뉘어져 있음.
+    메뉴를 저장하기 위해 준비하는 과정인 given절
+    실제로 메뉴를 저장하는 when 절
+    메뉴가 잘 추가되었는지 확인하는 then 절
 
     2. 스프링 부트 3와 테스트
         스프링 부트는 애플리케이션을 테스트하기 위한 도구와 애너테이션을 제공.
