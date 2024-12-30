@@ -36,3 +36,4 @@ class MemberRepositoryTest {
         assertThat(members.size()).isEqualTo(3);
     }
 }
+//test
