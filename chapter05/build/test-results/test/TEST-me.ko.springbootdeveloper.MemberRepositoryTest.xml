@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="me.ko.springbootdeveloper.MemberRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-30T12:36:42" hostname="gohyeogjaeui-MacBookPro.local" time="0.413">
+<testsuite name="me.ko.springbootdeveloper.MemberRepositoryTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-12-31T10:33:40" hostname="gohyeogjaeui-MacBookPro.local" time="0.429">
   <properties/>
-  <testcase name="deleteMemberById()" classname="me.ko.springbootdeveloper.MemberRepositoryTest" time="0.413"/>
-  <system-out><![CDATA[21:36:40.862 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [me.ko.springbootdeveloper.MemberRepositoryTest]: MemberRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-21:36:40.931 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration me.ko.springbootdeveloper.SpringBootDeveloperApplication for test class me.ko.springbootdeveloper.MemberRepositoryTest
+  <testcase name="update()" classname="me.ko.springbootdeveloper.MemberRepositoryTest" time="0.429"/>
+  <system-out><![CDATA[19:33:38.618 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [me.ko.springbootdeveloper.MemberRepositoryTest]: MemberRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:33:38.683 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration me.ko.springbootdeveloper.SpringBootDeveloperApplication for test class me.ko.springbootdeveloper.MemberRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -13,21 +13,21 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.0)
 
-2024-12-30T21:36:41.145+09:00  INFO 34736 --- [    Test worker] m.k.s.MemberRepositoryTest               : Starting MemberRepositoryTest using Java 17.0.11 with PID 34736 (started by koeode in /Users/koeode/Documents/ko/springboot/chapter05)
-2024-12-30T21:36:41.146+09:00  INFO 34736 --- [    Test worker] m.k.s.MemberRepositoryTest               : No active profile set, falling back to 1 default profile: "default"
-2024-12-30T21:36:41.321+09:00  INFO 34736 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-12-30T21:36:41.348+09:00  INFO 34736 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 1 JPA repository interface.
-2024-12-30T21:36:41.376+09:00  INFO 34736 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2024-12-30T21:36:41.441+09:00  INFO 34736 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:0af0441d-ea31-4e02-9442-cdaf30a62b96;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2024-12-30T21:36:41.590+09:00  INFO 34736 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-12-30T21:36:41.616+09:00  INFO 34736 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
-2024-12-30T21:36:41.635+09:00  INFO 34736 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2024-12-30T21:36:41.757+09:00  INFO 34736 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-12-30T21:36:42.148+09:00  INFO 34736 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-31T19:33:38.884+09:00  INFO 33169 --- [    Test worker] m.k.s.MemberRepositoryTest               : Starting MemberRepositoryTest using Java 17.0.11 with PID 33169 (started by koeode in /Users/koeode/Documents/ko/springboot/chapter05)
+2024-12-31T19:33:38.885+09:00  INFO 33169 --- [    Test worker] m.k.s.MemberRepositoryTest               : No active profile set, falling back to 1 default profile: "default"
+2024-12-31T19:33:39.058+09:00  INFO 33169 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-31T19:33:39.084+09:00  INFO 33169 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 1 JPA repository interface.
+2024-12-31T19:33:39.112+09:00  INFO 33169 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2024-12-31T19:33:39.175+09:00  INFO 33169 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:dfff0b65-c4d9-4118-beed-afc1af1cad46;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2024-12-31T19:33:39.319+09:00  INFO 33169 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-31T19:33:39.348+09:00  INFO 33169 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.3.1.Final
+2024-12-31T19:33:39.367+09:00  INFO 33169 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-31T19:33:39.480+09:00  INFO 33169 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-31T19:33:39.872+09:00  INFO 33169 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: drop table if exists member cascade 
 Hibernate: create table member (id bigint generated by default as identity, name varchar(255) not null, primary key (id))
-2024-12-30T21:36:42.165+09:00  INFO 34736 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-12-30T21:36:42.360+09:00  INFO 34736 --- [    Test worker] m.k.s.MemberRepositoryTest               : Started MemberRepositoryTest in 1.389 seconds (process running for 1.975)
+2024-12-31T19:33:39.889+09:00  INFO 33169 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-31T19:33:40.086+09:00  INFO 33169 --- [    Test worker] m.k.s.MemberRepositoryTest               : Started MemberRepositoryTest in 1.368 seconds (process running for 1.924)
 Hibernate: select m1_0.id,m1_0.name from member m1_0 where m1_0.id=?
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
