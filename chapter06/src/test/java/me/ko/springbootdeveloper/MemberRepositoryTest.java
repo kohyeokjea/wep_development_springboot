@@ -1,4 +1,4 @@
-package springbootdeveloper;
+package me.ko.springbootdeveloper;
 
 /*
     MemberRepositoryTest를 만들었지만, 데이터 조회를 위해서
@@ -161,11 +161,11 @@ class MemberRepositoryTest {
                 member.java
      */
 
-    @Sql("/insert-member.sql")
+    @Sql("/insert-members.sql")
     @Test
-    void update(){
-        // given        -> id 2인 객체를 가지고 와서 member라는 객체명에 저장 / 현재 name = "B";
-        Member member =memberRepository.findById(2L).get();
+    void update() {
+        // given    -> id 2인 객체를 가지고 와서 member라는 객체명에 저장 / 현재 name = "B";
+        Member member = memberRepository.findById(2L).get();
 
         // when
         member.changeName("BC");
@@ -173,10 +173,9 @@ class MemberRepositoryTest {
         // then
         assertThat(memberRepository.findById(2L).get().getName()).isEqualTo("BC");
     }
-
     /*
         그런데 지금 이상의 메서드에는 @Transactional 애너테이션이 존재하지 않음.
-            -> @DataJpaTest 애너테이션
+            -> @DataJpaTest 애너테이션 때문입니다.
      */
 }
 
