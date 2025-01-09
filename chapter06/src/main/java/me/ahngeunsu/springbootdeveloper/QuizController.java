@@ -1,13 +1,13 @@
-package me.ko.springbootdeveloper;
+package me.ahngeunsu.springbootdeveloper;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController         // 매우 자주 사용할 예정
+@RestController             // 우리는 매우 자주 사용할 예정입니다.
 public class QuizController {
 
-    @GetMapping("/quiz")        // (1)
-    public ResponseEntity<String> quiz(@RequestParam("code") int code){
+    @GetMapping("/quiz")            // (1)
+    public ResponseEntity<String> quiz(@RequestParam("code") int code) {
         switch (code) {
             case 1:
                 return ResponseEntity.created(null).body("Created!");
@@ -19,8 +19,9 @@ public class QuizController {
     }
 
     @PostMapping("/quiz")       // (2)
-    public ResponseEntity<String> quiz2(@RequestBody Code code){
-        switch (code.value()){
+    public ResponseEntity<String> quiz2(@RequestBody Code code) {
+
+        switch (code.value()) {
             case 1:
                 return ResponseEntity.status(403).body("Forbidden!");
             default:
@@ -29,8 +30,8 @@ public class QuizController {
     }
 }
 
-record Code(int value){}        // (3)
+record Code(int value) {}   //  (3)
 
 /*
-    QuizControllerTest.java 파일을 만들어보세요
+    QuizControllerTest.java 파일을 만들어보세요. 힌트 : 어쩌고저쩌고 한다음에 alt + enter 눌러야 함.
  */

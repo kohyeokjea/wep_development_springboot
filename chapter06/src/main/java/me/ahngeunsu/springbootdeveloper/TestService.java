@@ -1,4 +1,4 @@
-package me.ko.springbootdeveloper;
+package me.ahngeunsu.springbootdeveloper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class Testservice {
+public class TestService {
+
     @Autowired
     MemberRepository memberRepository;
 

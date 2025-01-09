@@ -1,4 +1,4 @@
-package me.ko.springbootdeveloper;
+package me.ahngeunsu.springbootdeveloper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +9,12 @@ import java.util.List;
 @RestController
 public class TestController {
 
-    @Autowired
-    Testservice testservice;
+    @Autowired  // TestService Bean 주입
+    TestService testService;
 
     @GetMapping("/test")
-    public List<Member> getAllMembers(){
-        List<Member> members = testservice.getAllMembers();
-        return  members;
+    public List<Member> getAllMembers() {
+        List<Member> members = testService.getAllMembers();
+        return members;
     }
 }
