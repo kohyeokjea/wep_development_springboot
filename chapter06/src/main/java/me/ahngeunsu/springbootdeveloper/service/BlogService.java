@@ -1,8 +1,10 @@
 package me.ahngeunsu.springbootdeveloper.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import me.ahngeunsu.springbootdeveloper.domain.Article;
 import me.ahngeunsu.springbootdeveloper.dto.AddArticleRequest;
+import me.ahngeunsu.springbootdeveloper.dto.UpdateArticleRequest;
 import me.ahngeunsu.springbootdeveloper.repository.BlogRepository;
 import org.springframework.stereotype.Service;
 
@@ -64,5 +66,29 @@ public class BlogService {
         blogRepository.deleteById(id);
     }
     // 컨트롤러로 가면 된다. /api/articles/{id}
+
+    @Transactional
+    public Article update(long id, UpdateArticleRequest request) {
+        Article article = blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+
+        // domain -> Article에서 정의한 update()를 사용
+        article.update(request.getTitle(), request.getContent());
+
+        return article;
+    }
+
+    /*
+        트랜젝션 - 데이터베이스에서 데이터를 바꾸기 위한 작업 단위를 의미함.
+
+            예를 들어 계좌 이체를 할 때 이런 과정을 거친다고 가정한다.
+                1) A 계좌에서 출금
+                2) B 계좌에 입금
+            그런데 1)은 성공했는데, 도중에 2)가 실패하면 어떻게 되나요? 고객 입장에서는 출금은 됐는데,
+            입금이 안된 상황이 발생한다.
+            이런 상황이 발생하지 않으려면 출금과 입금을 하나의 작업 단위로 묶어서,
+            즉 트랜잭션이라는 단위로 묶어서 두 작업을 한 단위로 실행하면 된다.
+            만약 중간에 실패한다면 트랜잭션의 처음 상태로 모두 되돌리면 된다.(ROLLBACK)
+     */
 
 }

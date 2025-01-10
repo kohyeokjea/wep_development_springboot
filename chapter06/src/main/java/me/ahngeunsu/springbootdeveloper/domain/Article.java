@@ -31,6 +31,13 @@ public class Article {
         this.content = content;
     }
 
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    // 이상의 update 메서드 정의 후에 -> 수정 요청과 관련된 DTO 작성
+
     /*
         @Builder 애너테이션은 롬복에서 지원하는 애너테이션으로, 생성자 위에 입력하면 빌더 패턴
         방식으로 객체 생성 가능
