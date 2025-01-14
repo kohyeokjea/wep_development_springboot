@@ -14,8 +14,5 @@ public class ArticleListViewResponse {
         this.title = article.getTitle();
         this.content = article.getContent();
     }
-    /*
-        controller 패키지에
-        BlogViewController 파일 만든다.
-     */
+
 }

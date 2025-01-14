@@ -16,11 +16,9 @@ public class ArticleViewResponse {
     private LocalDateTime createdAt;
 
     public ArticleViewResponse(Article article) {
-       this.id = article.getId();
-       this.title = article.getTitle();
-       this.content = article.getContent();
-       this.createdAt = article.getCreatedAt();
+        this.id = article.getId();
+        this.title = article.getTitle();
+        this.content = article.getContent();
+        this.createdAt = article.getCreatedAt();
     }
-
-    // BlogViewController.java 로 넘어가기
 }

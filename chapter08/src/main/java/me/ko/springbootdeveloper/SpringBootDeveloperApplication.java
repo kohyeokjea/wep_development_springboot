@@ -1,16 +1,10 @@
 package me.ko.springbootdeveloper;
-/*
-    서버 실행 안될 때 한 번 시도해보기
-    1. build - rebuild project
-    2. intellij 점부 다 끄고 재시작
-    3. SpringBootDeveloperApplication.java 들어와서
-    4. current file인거 확인하고 재시작
- */
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@EnableJpaAuditing      // created_at, updated_at을 자동 업데이트해주는 애너테이션
+@EnableJpaAuditing
 @SpringBootApplication
 public class SpringBootDeveloperApplication {
     public static void main(String[] args) {
@@ -19,58 +13,54 @@ public class SpringBootDeveloperApplication {
 }
 
 /*
-    1. 사전 지식 : 타임리프(Thymeleaf)
-        타임리프는 템플릿 엔진이다. 다만 템플릿 엔진은 HTML과 템플릿 엔진을 위한 문법을 섞어서 사용.
-            즉 이제는 HTML 지식이 약간 필요하다.
+    학습 목표 : 로그인 / 회원 가입 기능을 구현
+              회원 가입 구조는 로그인 구조와 유사하다.
 
-            -> 다음 과정에서 HTML을 배우게 되므로 아주 간단한 화면 구성을 위해서 코드를 작성할 예정
+              /login 요청이 들어올 때,
+              -> UserVeiwController가 해당 요청에 대한 분기 처리를 하고 WebSecurityConfig에 설정한 보안 관련 내용들을 실행
+              -> UserDetailsService를 실행하면 요청을 성공했을 때
+              -> defaultSuccessUrl로 설정한 /articles로 리다이렉트 하거나 csrf를 disable하거나 하는 등의 작업
 
-        * 템플릿 엔진 : 스프링 서버에서 데이터를 받아 우리가 보는 웹 페이지, 즉 HTML 상에서
-                     그 데이터를 넣어 보여주는 도구.
+              UserDetailsService에서는 loadUserByUsername() 메서드를 실행하여 이메일로 유저를 찾고 반환.
 
-        템플릿 엔진 개념 잡기
-            -> 간단한 템플릿 문법을 위한 예
-            <h1 text=${이름}>
-            <p text=${나이}>
+              여기서 유저는 User 클래스의 객체이고 UserRepository에서 실제 데이터를 가져 올거다.
 
-            h1 태그에서는 ${이름}이 텍스트 어트리뷰트(속성)로 할당되어 있다.
-            p 태그도 비슷한 상황이다.
-            이상이 템플릿 문법의 예시인데,
-            이렇게 해두면 서버에서 이름, 나이로는 key로 데이터를 템플릿 엔진에 넘겨주고,
-            템플릿 엔진은 이를 받아 HTML에 값을 적용한다.
+              회원 가입 역시 유사하게 구성할 거다.
 
-            -> 서버에서 보내준 데이터 예
-            {
-                이름: "홍길동",
-                나이: 11
-            }
-            값이 달라지면 그때그때 화면에 반영하니 동적인 웹 페이지를 만들 수 잇게 되는 것이다.
+              로그아웃
+              /logout 요청이 들어오면
+              -> UserApiController클래스에서 로그아웃 로직을 실행할 예정.
+              그 로그아웃 로직 : SecurityContextLogoutHander에서 제공하는 logout() 메서드를 실행할 예정.
 
-            템플릿 엔진은 각각 문법이 조금씩 다른 편이다. 그래서 템플릿 엔지마다 문법을 새로 배워야 하는
-            단점은 존재하지만 구조는 그래도 비슷하다.
-                대표적인 템플릿 엔진 예시 : JSP, 타임리프, 프리마커 등
+              1. 스프링 시큐리티 (Spring Securtiy)
+                    1) 인증 vs 인가
+                        (1) 인증(Authentication) : 사용자의 시원을 입증하는 과정
+                                                  예를 들어 사용자가 사이트에 로그인할 때 누구인지 확인하는 과정을 인증이라고 한다.
 
-                하지만 스프링 타임리프를 권장하고 있으므로 타임리프 사용 예정
+                        (2) 인가(Authorization) : 사이트의 특정 부분에 접근할 수 있는지 권한을 확인하는 작업
+                                                 예를 들어 관리자는 관리자 페이지에 들어갈 수 있지만 일반 사용자는 관리자 페이지에 들어갈 수 없다.
 
-            타임리프 표현식과 문법
-                타임리프의 문법은 직관적인 편인데, 자주 사용하는 표현식과 문법은 예시로만 보여드리고,
-                구체적인 사용 방법은 실습으로 알아볼거다.
+                        인증과 인가 관련 코드를 아무런 도구 없이 작성하려면 복잡하기 때문에 스프링 시큐리티를 사용한다.
 
-                이하에서 소개하는 표현식들은 전달받은 데이터를 사용자들이 볼 수 있게
-                뷰로 만들기 위해 사용되는 표현식 예시이다.
+                    2) 스프링 시큐리티
+                        : 스프링 기반 애플리케이션의 보안을 담당하는 스프링 하위 프레임워크 보안 관련 옵션을 다수 제공해 준다.
+                          CSRF, 세션 공경을 방어해주고(-> 정처기 등에 자주 나옴), 요청 헤더도 보안 처리를 해주므로
+                          보안 관련 개발을 하는데 부담을 덜어주는 편.
 
-            -> 타임리프 표현식
-            ${...} - 변수의 값 표현식
-            #{...} - 속성 파일 값 표현식
-            @{...} - URL 표현식
-            *{...} - 선택한 변수의 표현식. th:object에서 선택한 객체에 접근
+                    3) 필터 기반으로 동작하는 스프링 시큐리티
+                        스프링 시큐리티의 풀 로그인 과정을 설정하는 건(코드로 작성하는 건) 그렇게 어렵지 않을건데,
+                        내부적으로 아까 본 그림처럼 꽤 복잡한 과정을 거치게 된다.
 
-            -> 타임리프 문법
-            th:text - 텍스트를 표현할 대 사용 - th:text=${person.name}
-            th:each - 컬렉션을 반복할 대 사용 - th:each="person:${persons}"
-            th:if - 조건이 true인 때만 표시 - th:if"${person.age}>=20"
-            th:unless - 조건이 false인 때만 표시 - th:unless"${person.age}>=20"
-            th:href - 이동 경로 - th:href="@{/persons(id=${person.id})}"
-            th:with - 변수 값으로 지정 - th:with="name=${person.name}"
-            th:object - 선택한 객체로 지정 - th:object="${person}"
+                        모두 외워야 하는 거는 아니다, 다만 로그인 과정이 어떤 흐름으로 이어지는 지를 이해하면 더 잘 활용 가능하다.
+                        일단은 회원 가입 / 로그인 관련 부분을 코딩으로 풀어나갈 예정
+
+              2. 회원 도메인 만들기
+                    스프링 시큐리티를 활용한 인증, 인가 기능 구현 예정.
+                    회원 정보를 저장할 테이블을 만들고,
+                    테이블과 연결할 도메인을 만들고,
+                    이 테이블과 연결할 회원 엔티티를 만들 거다.
+                    회원 엔티티와 연결되어 데이터를 조회하게 해줄 리포지토리가 추가되고, 마지막으로
+                    스프링 시큐리티에서 사용자 정보를 가져오는 서비스를 구현할 예정
+
+            -> build.gradle 에 의존성 추가
  */

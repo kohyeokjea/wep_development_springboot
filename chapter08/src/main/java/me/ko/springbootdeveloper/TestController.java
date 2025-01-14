@@ -9,7 +9,7 @@ import java.util.List;
 @RestController
 public class TestController {
 
-    @Autowired  // TestService Bean 주입
+    @Autowired
     TestService testService;
 
     @GetMapping("/test")
