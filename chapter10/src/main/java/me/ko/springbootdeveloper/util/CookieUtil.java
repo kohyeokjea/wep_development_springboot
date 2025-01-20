@@ -3,6 +3,9 @@ package me.ko.springbootdeveloper.util;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.util.SerializationUtils;
+
+import java.util.Base64;
 
 public class CookieUtil {
     // 요청값(이름, 값, 만료 기간)을 바탕으로 쿠키 추가
@@ -39,4 +42,26 @@ public class CookieUtil {
 
         직렬화 / 역직렬화하는 메서드 구현 예정
      */
+    // 객체를 직렬화 해서 쿠키의 값으로 변환
+    public static String serialize(Object obj) {
+        return Base64.getUrlEncoder()
+                .encodeToString(SerializationUtils.serialize(obj));
+    }
+
+    // 쿠키를 역직렬화해서 객체로 변환
+    public static <T> T deserialize(Cookie cookie, Class<T> cls) {
+        return cls.cast(
+                SerializationUtils.deserialize(
+                        Base64.getUrlDecoder().decode(cookie.getValue())
+                )
+        );
+    }
 }
+/*
+    사용자 정보를 조회해 users 테이블에 사용자 정보가 있다면 리소스 서버(OAuth2관련)에서
+    제공해주는 이름을 엄데이트한다.
+
+    사용자 정보가 없다면 새 사용자를 생성해서 DB에 저장할 수 있도록 해준다.
+
+    먼저, domain의 User.java를 수정한다.
+ */
